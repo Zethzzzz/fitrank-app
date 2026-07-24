@@ -345,13 +345,6 @@ document.getElementById("btn-see-profile").addEventListener("click", () => {
   showScreen("profile");
 });
 
-document.getElementById("btn-retest").addEventListener("click", () => {
-  currentStep = 0;
-  testSteps.forEach((key) => (document.getElementById(`input-${key}`).value = ""));
-  renderTestStep();
-  showScreen("test");
-});
-
 // Rank list navigation
 document.getElementById("btn-see-ranks").addEventListener("click", () => {
   const profile = loadProfile();
@@ -522,7 +515,7 @@ function renderBossFight(profile) {
   const nextRank = nextRankIdx < RANKS.length ? RANKS[nextRankIdx] : null;
   
   if (!nextRank) {
-    document.getElementById("bossfight-body").innerHTML = `<div style="padding: 40px 20px; text-align: center;"><p>Kamu sudah mencapai rank tertinggi!</p></div>`;
+    document.querySelector(".bossfight-body").innerHTML = `<div style="padding: 40px 20px; text-align: center;"><p>Kamu sudah mencapai rank tertinggi!</p></div>`;
     return;
   }
   
