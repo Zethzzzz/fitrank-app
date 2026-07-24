@@ -136,7 +136,7 @@ function generateTodaysMissions(profile) {
   if (existing[today]) return existing[today];
   
   const weakest = getWeakestStats(profile.stats);
-  const targets = MISSION_TARGETS[profile.rankIndex][profile.divIndex.toLowerCase()];
+  const targets = MISSION_TARGETS[profile.rankIndex][DIVISIONS[profile.divIndex]];
   const missions = weakest.map(type => ({
     type,
     target: targets[type],
