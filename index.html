@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FitRank</title>
+<meta name="theme-color" content="#14201C">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="app">
+
+  <!-- WELCOME / START SCREEN -->
+  <section id="screen-welcome" class="screen">
+    <div class="welcome-wrap">
+      <div class="eyebrow">FitRank</div>
+      <h1 class="hero-title">Rank-mu adalah<br>kemampuanmu.</h1>
+      <p class="hero-sub">Bukan poin XP. Bukan seberapa sering kamu buka app. Rank di sini diukur dari tes fisik nyata — dan bisa naik, bisa juga turun.</p>
+      <button id="btn-start-test" class="btn btn-primary btn-lg">Mulai Placement Test</button>
+      <p class="hero-note">Butuh 4 tes singkat: Push-up, Squat, Plank, Lari 6 menit.</p>
+    </div>
+  </section>
+
+  <!-- PLACEMENT TEST SCREEN -->
+  <section id="screen-test" class="screen hidden">
+    <header class="test-header">
+      <button id="btn-test-back" class="icon-btn" aria-label="Kembali">←</button>
+      <div class="test-progress">
+        <div class="test-progress-bar"><div id="test-progress-fill" class="test-progress-fill"></div></div>
+        <span id="test-step-label" class="test-step-label">Tes 1 dari 4</span>
+      </div>
+    </header>
+
+    <div class="test-body">
+      <div id="step-pushup" class="test-step">
+        <div class="test-icon">💪</div>
+        <h2 class="test-title">Push-up</h2>
+        <p class="test-desc">Lakukan push-up sebanyak mungkin dengan form yang benar. Catat total repetisi.</p>
+        <label class="field-label" for="input-pushup">Jumlah repetisi</label>
+        <input id="input-pushup" type="number" inputmode="numeric" min="0" placeholder="0" class="field-input">
+      </div>
+
+      <div id="step-squat" class="test-step hidden">
+        <div class="test-icon">🦵</div>
+        <h2 class="test-title">Squat</h2>
+        <p class="test-desc">Lakukan bodyweight squat sebanyak mungkin dalam 60 detik.</p>
+        <label class="field-label" for="input-squat">Jumlah repetisi / 60 detik</label>
+        <input id="input-squat" type="number" inputmode="numeric" min="0" placeholder="0" class="field-input">
+      </div>
+
+      <div id="step-plank" class="test-step hidden">
+        <div class="test-icon">🧘</div>
+        <h2 class="test-title">Plank</h2>
+        <p class="test-desc">Tahan posisi plank selama mungkin dengan form yang benar.</p>
+        <label class="field-label" for="input-plank">Waktu tahan (detik)</label>
+        <input id="input-plank" type="number" inputmode="numeric" min="0" placeholder="0" class="field-input">
+      </div>
+
+      <div id="step-run" class="test-step hidden">
+        <div class="test-icon">🏃</div>
+        <h2 class="test-title">Jalan / Lari 6 Menit</h2>
+        <p class="test-desc">Tempuh jarak sejauh mungkin dalam 6 menit, jalan maupun lari.</p>
+        <label class="field-label" for="input-run">Jarak tempuh (meter)</label>
+        <input id="input-run" type="number" inputmode="numeric" min="0" placeholder="0" class="field-input">
+      </div>
+    </div>
+
+    <div class="test-footer">
+      <button id="btn-test-next" class="btn btn-primary btn-lg btn-block">Lanjut</button>
+    </div>
+  </section>
+
+  <!-- RESULT REVEAL SCREEN -->
+  <section id="screen-result" class="screen hidden">
+    <div class="result-wrap">
+      <div class="eyebrow">Placement Test Selesai</div>
+      <h2 class="result-title">Rank awalmu:</h2>
+      <div id="result-badge" class="rank-badge rank-badge-lg">
+        <div id="result-animal" class="rank-animal">🐨</div>
+        <div id="result-rankname" class="rank-name">Koala</div>
+        <div id="result-division" class="rank-division">Divisi III</div>
+      </div>
+      <div class="result-ovr">
+        <span id="result-ovr-num" class="result-ovr-num">0</span>
+        <span class="result-ovr-label">OVR</span>
+      </div>
+      <button id="btn-see-profile" class="btn btn-primary btn-lg">Lihat Profil</button>
+    </div>
+  </section>
+
+  <!-- PROFILE SCREEN -->
+  <section id="screen-profile" class="screen hidden">
+    <header class="profile-header">
+      <div class="eyebrow">Profilmu</div>
+      <button id="btn-retest" class="icon-btn" aria-label="Tes ulang" title="Tes ulang">↻</button>
+    </header>
+
+    <div class="profile-body">
+      <div class="rank-card">
+        <div class="rank-card-top">
+          <div id="profile-animal" class="rank-animal-card">🐨</div>
+          <div class="rank-card-info">
+            <div id="profile-rankname" class="rank-card-name">Koala</div>
+            <div id="profile-division" class="rank-card-division">Divisi III</div>
+          </div>
+          <div class="rank-card-ovr">
+            <span id="profile-ovr" class="rank-card-ovr-num">0</span>
+            <span class="rank-card-ovr-label">OVR</span>
+          </div>
+        </div>
+        <div class="rank-card-meta">
+          <div class="meta-item">
+            <span class="meta-label">Peak Rank</span>
+            <span id="profile-peak" class="meta-value">—</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Fitness Rating</span>
+            <span id="profile-fr" class="meta-value">—</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-row">
+          <span class="stat-name">Pace</span>
+          <div class="stat-bar"><div id="bar-pace" class="stat-bar-fill"></div></div>
+          <span id="val-pace" class="stat-val">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Strength</span>
+          <div class="stat-bar"><div id="bar-strength" class="stat-bar-fill"></div></div>
+          <span id="val-strength" class="stat-val">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Endurance</span>
+          <div class="stat-bar"><div id="bar-endurance" class="stat-bar-fill"></div></div>
+          <span id="val-endurance" class="stat-val">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Agility <span class="stat-provisional">prov.</span></span>
+          <div class="stat-bar"><div id="bar-agility" class="stat-bar-fill"></div></div>
+          <span id="val-agility" class="stat-val">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Stability</span>
+          <div class="stat-bar"><div id="bar-stability" class="stat-bar-fill"></div></div>
+          <span id="val-stability" class="stat-val">0</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-name">Power</span>
+          <div class="stat-bar"><div id="bar-power" class="stat-bar-fill"></div></div>
+          <span id="val-power" class="stat-val">0</span>
+        </div>
+      </div>
+
+      <div class="quick-stats">
+        <div class="quick-stat">
+          <span id="profile-streak" class="quick-stat-num">0</span>
+          <span class="quick-stat-label">Streak</span>
+        </div>
+        <div class="quick-stat">
+          <span id="profile-workouts" class="quick-stat-num">0</span>
+          <span class="quick-stat-label">Total Workout</span>
+        </div>
+      </div>
+
+      <div class="coming-soon-card">
+        <span class="coming-soon-badge">Segera Hadir</span>
+        <p>Promotion Trial (naik rank lewat "Boss Fight") dan sistem decay (rank turun bila lama tidak aktif) akan menyusul di update berikutnya.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
