@@ -265,15 +265,18 @@ function currentInputEl() {
   return document.getElementById(`input-${testSteps[currentStep]}`);
 }
 
+let testEntryScreen = "welcome";
+
 document.getElementById("btn-start-test").addEventListener("click", () => {
   currentStep = 0;
+  testEntryScreen = "welcome";
   renderTestStep();
   showScreen("test");
 });
 
 document.getElementById("btn-test-back").addEventListener("click", () => {
   if (currentStep === 0) {
-    showScreen("welcome");
+    showScreen(testEntryScreen);
     return;
   }
   currentStep -= 1;
@@ -343,6 +346,16 @@ function renderResult(profile) {
 document.getElementById("btn-see-profile").addEventListener("click", () => {
   renderProfile(loadProfile());
   showScreen("profile");
+});
+
+document.getElementById("btn-retest").addEventListener("click", () => {
+  const ok = confirm("Placement test ulang akan menghitung ulang stats & rank kamu berdasarkan hasil tes baru. Peak rank tetap tersimpan. Lanjutkan?");
+  if (!ok) return;
+  currentStep = 0;
+  testEntryScreen = "profile";
+  testSteps.forEach((key) => (document.getElementById(`input-${key}`).value = ""));
+  renderTestStep();
+  showScreen("test");
 });
 
 // Rank list navigation
