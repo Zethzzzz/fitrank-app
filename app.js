@@ -363,6 +363,10 @@ document.getElementById("btn-see-ranks").addEventListener("click", () => {
   const profile = loadProfile();
   renderRankList(profile);
   showScreen("ranks");
+  const currentItem = document.querySelector('#ranks-list [data-current="true"]');
+  if (currentItem) {
+    currentItem.scrollIntoView({ behavior: "instant", block: "center" });
+  }
 });
 
 document.getElementById("btn-ranks-back").addEventListener("click", () => {
@@ -453,10 +457,12 @@ function renderProfile(profile) {
 function renderRankList(profile) {
   const list = document.getElementById("ranks-list");
   list.innerHTML = "";
-  RANKS.forEach((rank, i) => {
+  for (let i = RANKS.length - 1; i >= 0; i--) {
+    const rank = RANKS[i];
     const isCurrent = profile.rankIndex === i;
     const item = document.createElement("div");
     item.className = `rank-item ${isCurrent ? "current" : ""}`;
+    if (isCurrent) item.dataset.current = "true";
     item.innerHTML = `
       <div class="rank-item-emoji">${rank.emoji}</div>
       <div class="rank-item-info">
@@ -466,7 +472,7 @@ function renderRankList(profile) {
       ${isCurrent ? `<div class="rank-item-status">Divisi ${profile.division}</div>` : ""}
     `;
     list.appendChild(item);
-  });
+  }
 }
 
 // ---------- Missions render ----------
