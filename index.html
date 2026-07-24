@@ -96,7 +96,10 @@
   <section id="screen-profile" class="screen hidden">
     <header class="profile-header">
       <div class="eyebrow">Profilmu</div>
-      <button id="btn-retest" class="icon-btn" aria-label="Tes ulang" title="Tes ulang">↻</button>
+      <div class="profile-header-actions">
+        <button id="btn-see-missions" class="icon-btn" aria-label="Misi harian">📋</button>
+        <button id="btn-see-ranks" class="icon-btn" aria-label="Daftar rank">🏆</button>
+      </div>
     </header>
 
     <div class="profile-body">
@@ -168,9 +171,58 @@
         </div>
       </div>
 
+      <div id="boss-fight-section" style="margin-bottom: 20px;">
+        <button id="btn-boss-fight" class="btn btn-primary btn-lg btn-block" style="background: linear-gradient(135deg, var(--gold), var(--coral));">⚔️ Ujian Naik Rank</button>
+        <p id="boss-fight-hint" style="font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 8px;"></p>
+      </div>
+
       <div class="coming-soon-card">
         <span class="coming-soon-badge">Segera Hadir</span>
-        <p>Promotion Trial (naik rank lewat "Boss Fight") dan sistem decay (rank turun bila lama tidak aktif) akan menyusul di update berikutnya.</p>
+        <p>Sistem decay (rank turun bila lama tidak aktif) akan menyusul di update berikutnya.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANK LIST SCREEN -->
+  <section id="screen-ranks" class="screen hidden">
+    <header class="ranks-header">
+      <button id="btn-ranks-back" class="icon-btn" aria-label="Kembali">←</button>
+      <div class="eyebrow">Daftar Rank</div>
+    </header>
+    <div class="ranks-body">
+      <div id="ranks-list" class="ranks-list"></div>
+    </div>
+  </section>
+
+  <!-- DAILY MISSIONS SCREEN -->
+  <section id="screen-missions" class="screen hidden">
+    <header class="missions-header">
+      <button id="btn-missions-back" class="icon-btn" aria-label="Kembali">←</button>
+      <div class="eyebrow">Misi Harian</div>
+    </header>
+    <div class="missions-body">
+      <div id="missions-list" class="missions-list"></div>
+      <div id="missions-btn-container" style="padding: 20px; display: flex; gap: 10px;"></div>
+    </div>
+  </section>
+
+  <!-- BOSS FIGHT SCREEN -->
+  <section id="screen-bossfight" class="screen hidden">
+    <header class="bossfight-header">
+      <button id="btn-boss-back" class="icon-btn" aria-label="Kembali">←</button>
+      <div class="eyebrow">Promotion Trial</div>
+    </header>
+    <div class="bossfight-body">
+      <div class="boss-intro">
+        <div class="boss-rank-badge" style="margin: 0 auto 16px;">
+          <div id="boss-emoji" style="font-size: 3.2rem;">🐕</div>
+          <div id="boss-rankname" style="font-family: var(--font-display); text-transform: uppercase; font-weight: 700;">Dog</div>
+        </div>
+        <p id="boss-desc" style="color: var(--text-muted); text-align: center; margin: 0 0 20px;">Ujian kenaikan rank</p>
+      </div>
+      <div id="bossfight-tests" class="bossfight-tests"></div>
+      <div style="padding: 0 20px 20px;">
+        <button id="btn-boss-submit" class="btn btn-primary btn-lg btn-block">Serah Hasil Ujian</button>
       </div>
     </div>
   </section>

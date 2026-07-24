@@ -259,6 +259,10 @@ button { font-family: inherit; }
   justify-content: space-between;
   padding: 20px 20px 6px;
 }
+.profile-header-actions {
+  display: flex;
+  gap: 8px;
+}
 .profile-body { padding: 12px 20px 40px; }
 
 .rank-card {
@@ -428,6 +432,167 @@ button { font-family: inherit; }
   font-size: 0.85rem;
   line-height: 1.5;
 }
+
+/* ---------- Rank List ---------- */
+.ranks-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+}
+.ranks-body { padding: 12px 20px 40px; }
+.ranks-list { display: flex; flex-direction: column; gap: 10px; }
+.rank-item {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.rank-item.current { border-color: var(--gold); background: var(--panel-raised); }
+.rank-item-emoji { font-size: 2rem; }
+.rank-item-info { flex: 1; }
+.rank-item-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.rank-item-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.rank-item-status {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold);
+}
+
+/* ---------- Missions ---------- */
+.missions-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
+.missions-body { padding: 12px 20px 40px; }
+.missions-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.mission-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+.mission-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+.mission-target {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.mission-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.mission-input {
+  flex: 1;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 10px;
+  outline: none;
+}
+.mission-input:focus { border-color: var(--gold); }
+.mission-submit-btn {
+  background: var(--teal);
+  color: var(--ink);
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.mission-status {
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 8px;
+  border-radius: 8px;
+  text-align: center;
+}
+.mission-status.complete {
+  background: rgba(79, 209, 174, 0.2);
+  color: var(--teal);
+}
+.mission-status.incomplete {
+  background: rgba(232, 115, 74, 0.2);
+  color: var(--coral);
+}
+.missions-footer-note {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 12px;
+  background: var(--panel);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* ---------- Boss Fight ---------- */
+.bossfight-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
+.bossfight-body { padding: 12px 20px 40px; }
+.boss-intro { text-align: center; margin-bottom: 24px; }
+.boss-rank-badge {
+  background: linear-gradient(160deg, var(--panel-raised), var(--panel));
+  border: 2px solid var(--gold);
+  border-radius: 16px;
+  padding: 20px;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.bossfight-tests { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.boss-test {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+.boss-test-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+.boss-test-req {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 10px;
+}
+.boss-test-input {
+  width: 100%;
+  background: var(--panel-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  padding: 12px;
+  outline: none;
+}
+.boss-test-input:focus { border-color: var(--gold); }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
