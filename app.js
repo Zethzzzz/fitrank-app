@@ -215,7 +215,15 @@ function attemptBossFight(profile, results) {
 function loadProfile() {
   try {
     const raw = localStorage.getItem(STORE_KEY);
-    return raw ? JSON.parse(raw) : null;
+    if (!raw) return null;
+    const profile = JSON.parse(raw);
+    if (profile && (profile.rankIndex === undefined || profile.divIndex === undefined)) {
+      const rankInfo = getRankInfo(profile.ovr);
+      profile.rankIndex = rankInfo.rankIndex;
+      profile.divIndex = rankInfo.divIndex;
+      saveProfile(profile);
+    }
+    return profile;
   } catch (e) {
     return null;
   }
@@ -312,6 +320,8 @@ function finishTest() {
     rank: rankInfo.rank,
     emoji: rankInfo.emoji,
     division: rankInfo.division,
+    rankIndex: rankInfo.rankIndex,
+    divIndex: rankInfo.divIndex,
     peak,
     streak,
     totalWorkout,
